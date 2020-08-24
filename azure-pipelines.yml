@@ -29,7 +29,9 @@ jobs:
   pool:
     vmImage: 'Ubuntu 18.04'
   steps:
-  - powershell: 'node scripts/filterSDK.js'
+  # - powershell: 'node scripts/filterSDK.js'
+    powershell: echo "##vso[task.setvariable variable=enabled_jobs;isOutput=true]["azure-sdk-for-java", "azure-sdk-for-python"]"
+    name: setvarStep
     name: setvarStep
   - script: echo $(enabled_jobs)
     name: echovar
