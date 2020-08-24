@@ -47,7 +47,9 @@ jobs:
   dependsOn: Get_Repos
   variables:
     enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
-  condition: containsValue(variables.enabled_jobs, 'azure-sdk-for-java')
+  # condition: containsValue(variables.enabled_jobs, 'azure-sdk-for-java')
+  steps:
+  - script: echo $(enabled_jobs)
   displayName: AzureSdkForJava
   # env:
   #   SDK_REPO_NAME: "azure-sdk-for-java"
@@ -57,7 +59,9 @@ jobs:
   dependsOn: Get_Repos
   variables:
     enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
-  condition: containsValue(variables.enabled_jobs, 'azure-sdk-for-js')
+  # condition: containsValue(variables.enabled_jobs, 'azure-sdk-for-js')
+  steps:
+  - script: echo $(enabled_jobs)
   displayName: AzureSdkForJs
   # env:
   #   SDK_REPO_NAME: "azure-sdk-for-js"
