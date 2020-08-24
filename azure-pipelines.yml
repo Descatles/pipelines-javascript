@@ -31,6 +31,8 @@ stages:
       vmImage: 'Ubuntu 18.04'
     steps:
     - script: 'node scripts/filterSDK.js'
+    - bash: |
+        echo repos to run is $(variables.ENABLED_JOBS)
 
 - stage: "Trigger_SDKAutomation"
   jobs:
