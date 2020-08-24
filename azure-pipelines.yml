@@ -3,19 +3,58 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
+# trigger:
+# - master
+
+# pool:
+#   vmImage: 'ubuntu-latest'
+
+# steps:
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '10.x'
+#   displayName: 'Install Node.js'
+
+# - script: |
+#     npm install
+#     npm run build
+#   displayName: 'npm install and build'
+
 trigger:
 - master
+stages:
+- stage: "Get Repo to Trigger"
+  jobs:
+  - job: "Get Repos"
+    displayName: Get Repos
+    pool:
+      vmImage: 'Ubuntu 18.04'
+    steps:
+    - script: 'node scripts/filterSDK.js'
 
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- stage: "Trigger SDKAutomation"
+  jobs:
+  - job: "azure-sdk-for-net"
+    condition: contains(variables.ENABLED_JOBS, 'azure-sdk-for-net')
+    displayName: Print azure-sdk-for-net
+    env:
+      SDK_REPO_NAME: "azure-sdk-for-net"
+    - script: 'echo $(SDK_REPO_NAME)'
+  - job: "azure-sdk-for-java"
+    condition: contains(variables.ENABLED_JOBS, 'azure-sdk-for-java')
+    displayName: Print azure-sdk-for-java
+    env:
+      SDK_REPO_NAME: "azure-sdk-for-java"
+    - script: 'echo $(SDK_REPO_NAME)'
+  - job: "azure-sdk-for-js"
+    condition: contains(variables.ENABLED_JOBS, 'azure-sdk-for-js')
+    displayName: Print azure-sdk-for-js
+    env:
+      SDK_REPO_NAME: "azure-sdk-for-js"
+    - script: 'echo $(SDK_REPO_NAME)'
+  - job: "azure-sdk-for-python"
+    condition: contains(variables.ENABLED_JOBS, 'azure-sdk-for-python')
+    displayName: Print azure-sdk-for-python
+    env:
+      SDK_REPO_NAME: "azure-sdk-for-python"
+    - script: 'echo $(SDK_REPO_NAME)'
