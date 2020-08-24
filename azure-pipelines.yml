@@ -42,31 +42,27 @@ jobs:
   # env:
   #   SDK_REPO_NAME: "azure-sdk-for-net"
   steps:
-  - script: echo "azure-sdk-for-net"
+  - script: echo $(enabled_jobs)
 - job: AzureSdkForJava
   dependsOn: Get_Repos
   variables:
     enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
   # condition: containsValue(variables.enabled_jobs, 'azure-sdk-for-java')
-  steps:
-  - script: echo $(enabled_jobs)
   displayName: AzureSdkForJava
   # env:
   #   SDK_REPO_NAME: "azure-sdk-for-java"
   steps:
-  - script: echo "azure-sdk-for-java"
+  - script: echo $(enabled_jobs)
 - job: AzureSdkForJs
   dependsOn: Get_Repos
   variables:
     enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
   # condition: containsValue(variables.enabled_jobs, 'azure-sdk-for-js')
-  steps:
-  - script: echo $(enabled_jobs)
   displayName: AzureSdkForJs
   # env:
   #   SDK_REPO_NAME: "azure-sdk-for-js"
   steps:
-  - script: echo "azure-sdk-for-js"
+  - script: echo $(enabled_jobs)
 - job: AzureSdkForPython
   dependsOn: Get_Repos
   variables:
@@ -76,4 +72,4 @@ jobs:
   # env:
   #   SDK_REPO_NAME: "azure-sdk-for-python"
   steps:
-  - script: echo "azure-sdk-for-python"
+  - script: echo $(enabled_jobs)
