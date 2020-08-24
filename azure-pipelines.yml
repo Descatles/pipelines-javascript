@@ -37,7 +37,7 @@ jobs:
   dependsOn: Get_Repos
   variables:
     enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
-  condition: containsValue($(enabled_jobs), 'azure-sdk-for-net')
+  condition: containsValue(${{ variables.enabled_jobs }}, 'azure-sdk-for-net')
   displayName: AzureSdkForNet
   steps:
   - script: echo $(enabled_jobs)
