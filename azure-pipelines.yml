@@ -31,7 +31,7 @@ jobs:
   steps:
   - powershell: 'node scripts/filterSDK.js'
     name: setvarStep
-  - script: echo $(enabled_jobs)
+  - script: echo $(setvarStep.enabled_jobs)
     name: echovar
 - job: AzureSdkForNet
   dependsOn: Get_Repos
