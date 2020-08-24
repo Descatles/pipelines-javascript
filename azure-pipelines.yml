@@ -39,22 +39,22 @@ stages:
     displayName: Print azure-sdk-for-net
     env:
       SDK_REPO_NAME: "azure-sdk-for-net"
-    - script: 'echo $(SDK_REPO_NAME)'
+    - script: 'echo $GLOBAL_SDK_REPO_NAME'
   - job: "azure-sdk-for-java"
     condition: contains(variables.ENABLED_JOBS, 'azure-sdk-for-java')
     displayName: Print azure-sdk-for-java
     env:
       SDK_REPO_NAME: "azure-sdk-for-java"
-    - script: 'echo $(SDK_REPO_NAME)'
+    - script: 'echo $GLOBAL_SDK_REPO_NAME'
   - job: "azure-sdk-for-js"
     condition: contains(variables.ENABLED_JOBS, 'azure-sdk-for-js')
     displayName: Print azure-sdk-for-js
     env:
       SDK_REPO_NAME: "azure-sdk-for-js"
-    - script: 'echo $(SDK_REPO_NAME)'
+    - script: 'echo $GLOBAL_SDK_REPO_NAME'
   - job: "azure-sdk-for-python"
     condition: contains(variables.ENABLED_JOBS, 'azure-sdk-for-python')
     displayName: Print azure-sdk-for-python
     env:
       SDK_REPO_NAME: "azure-sdk-for-python"
-    - script: 'echo $(SDK_REPO_NAME)'
+    - script: 'echo $GLOBAL_SDK_REPO_NAME'
