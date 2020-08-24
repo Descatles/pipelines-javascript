@@ -37,28 +37,28 @@ stages:
 - stage: "Trigger_SDKAutomation"
   jobs:
   - job: "AzureSdkForNet"
-    condition: contains($[variables.enabled_jobs], 'azure-sdk-for-net')
+    condition: containsValue(variables['enabled_jobs'], 'azure-sdk-for-net')
     displayName: AzureSdkForNet
     # env:
     #   SDK_REPO_NAME: "azure-sdk-for-net"
     steps:
     - script: echo "azure-sdk-for-net"
   - job: "AzureSdkForJava"
-    condition: contains($[variables.enabled_jobs], 'azure-sdk-for-java')
+    condition: containsValue(variables['enabled_jobs'], 'azure-sdk-for-java')
     displayName: AzureSdkForJava
     # env:
     #   SDK_REPO_NAME: "azure-sdk-for-java"
     steps:
     - script: echo "azure-sdk-for-java"
   - job: "AzureSdkForJs"
-    condition: contains($[variables.enabled_jobs], 'azure-sdk-for-js')
+    condition: containsValue(variables['enabled_jobs'], 'azure-sdk-for-js')
     displayName: AzureSdkForJs
     # env:
     #   SDK_REPO_NAME: "azure-sdk-for-js"
     steps:
     - script: echo "azure-sdk-for-js"
   - job: "AzureSdkForPython"
-    condition: contains($[variables.enabled_jobs], 'azure-sdk-for-python')
+    condition: containsValue(variables['enabled_jobs'], 'azure-sdk-for-python')
     displayName: AzureSdkForPython
     # env:
     #   SDK_REPO_NAME: "azure-sdk-for-python"
