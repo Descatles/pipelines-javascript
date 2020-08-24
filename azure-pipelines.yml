@@ -31,8 +31,8 @@ stages:
     pool:
       vmImage: 'Ubuntu 18.04'
     steps:
-    # - script: 'node scripts/filterSDK.js'
-    - script: echo $(ENABLED_JOBS)
+    - script: 'node scripts/filterSDK.js'
+    - script: echo $(enabled_jobs)
 
 - stage: "Trigger_SDKAutomation"
   jobs:
