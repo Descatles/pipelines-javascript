@@ -23,6 +23,9 @@
 trigger:
 - master
 
+variables:
+  enabled_jobs: []
+
 stages:
 - stage: "Get_Repo_to_Trigger"
   jobs:
