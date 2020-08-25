@@ -1,4 +1,5 @@
 steps:
+  - checkout: none
   - script: echo $SDK_REPO_NAME $BLOB_STORAGE_NAME
     env:
       BLOB_STORAGE_NAME: AKALI
