@@ -3,23 +3,6 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-# trigger:
-# - master
-
-# pool:
-#   vmImage: 'ubuntu-latest'
-
-# steps:
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '10.x'
-#   displayName: 'Install Node.js'
-
-# - script: |
-#     npm install
-#     npm run build
-#   displayName: 'npm install and build'
-
 trigger:
 - master
 
@@ -29,39 +12,43 @@ jobs:
   pool:
     vmImage: 'Ubuntu 18.04'
   steps:
-  - powershell: 'node scripts/filterSDK.js'
-    name: setvarStep
-  - script: echo $(setvarStep.enabled_jobs)
-    name: echovar
+  - powershell: 'node scripts/GetRepo.js'
+    name: GetRepo
+  - script: echo $(GetRepo.EnabledJobs)
+    name: EchoRepo
 - job: AzureSdkForNet
   dependsOn: Get_Repos
   variables:
-    enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
-  condition: contains(dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'], 'azure-sdk-for-net')
+    EnabledJobs: $[ dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'] ]
+    SDK_REPO_NAME: azure-sdk-for-net
+  condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-net')
   displayName: AzureSdkForNet
   steps:
-  - script: echo $(enabled_jobs)
+  - script: echo $(SDK_REPO_NAME)
 - job: AzureSdkForJava
   dependsOn: Get_Repos
   variables:
-    enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
-  condition: contains(dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'], 'azure-sdk-for-java')
+    EnabledJobs: $[ dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'] ]
+    SDK_REPO_NAME: azure-sdk-for-java
+  condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-java')
   displayName: AzureSdkForJava
   steps:
-  - script: echo $(enabled_jobs)
+  - script: echo $(SDK_REPO_NAME)
 - job: AzureSdkForJs
   dependsOn: Get_Repos
   variables:
-    enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
-  condition: contains(dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'], 'azure-sdk-for-js')
+    EnabledJobs: $[ dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'] ]
+    SDK_REPO_NAME: azure-sdk-for-js
+  condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-js')
   displayName: AzureSdkForJs
   steps:
-  - script: echo $(enabled_jobs)
+  - script: echo $(SDK_REPO_NAME)
 - job: AzureSdkForPython
   dependsOn: Get_Repos
   variables:
-    enabled_jobs: $[ dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'] ]
-  condition: contains(dependencies.Get_Repos.outputs['setvarStep.enabled_jobs'], 'azure-sdk-for-python')
+    EnabledJobs: $[ dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'] ]
+    SDK_REPO_NAME: azure-sdk-for-python
+  condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-python')
   displayName: AzureSdkForPython
   steps:
-  - script: echo $(enabled_jobs)
+  - script: echo $(SDK_REPO_NAME)
