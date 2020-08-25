@@ -6,6 +6,9 @@
 trigger:
 - master
 
+env:
+  BLOB_STORAGE_NAME: AKALI
+
 jobs:
 - job: Get_Repos
   displayName: Get_Repos
@@ -23,7 +26,7 @@ jobs:
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-net')
   displayName: AzureSdkForNet
   steps:
-  - script: echo $SDK_REPO_NAME
+  - script: echo $SDK_REPO_NAME $BLOB_STORAGE_NAME
     env:
       SDK_REPO_NAME: azure-sdk-for-net
 - job: AzureSdkForJava
@@ -33,7 +36,7 @@ jobs:
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-java')
   displayName: AzureSdkForJava
   steps:
-  - script: echo $SDK_REPO_NAME
+  - script: echo $SDK_REPO_NAME $BLOB_STORAGE_NAME
     env:
       SDK_REPO_NAME: azure-sdk-for-java
 - job: AzureSdkForJs
@@ -44,7 +47,7 @@ jobs:
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-js')
   displayName: AzureSdkForJs
   steps:
-  - script: echo $SDK_REPO_NAME
+  - script: echo $SDK_REPO_NAME $BLOB_STORAGE_NAME
     env:
       SDK_REPO_NAME: azure-sdk-for-js
 - job: AzureSdkForPython
@@ -55,6 +58,6 @@ jobs:
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-python')
   displayName: AzureSdkForPython
   steps:
-  - script: echo $SDK_REPO_NAME
+  - script: echo $SDK_REPO_NAME $BLOB_STORAGE_NAME
     env:
       SDK_REPO_NAME: azure-sdk-for-python
