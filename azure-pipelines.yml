@@ -58,5 +58,5 @@ jobs:
   - script: echo $SDK_REPO_NAME $BLOB_STORAGE_NAME
     env:
       SDK_REPO_NAME: azure-sdk-for-python
-env:
-  BLOB_STORAGE_NAME: AKALI
+- env:
+    BLOB_STORAGE_NAME: AKALI
