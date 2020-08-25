@@ -24,9 +24,7 @@ jobs:
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-net')
   displayName: AzureSdkForNet
   steps:
-  - script: echo $SDK_REPO_NAME
-    # env:
-    #   SDK_REPO_NAME: azure-sdk-for-net
+  - template: templates/RunSDKAuto.yml
 - job: AzureSdkForJava
   dependsOn: Get_Repos
   variables:
@@ -35,9 +33,7 @@ jobs:
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-java')
   displayName: AzureSdkForJava
   steps:
-  - script: echo $SDK_REPO_NAME
-    # env:
-    #   SDK_REPO_NAME: azure-sdk-for-java
+  - template: templates/RunSDKAuto.yml
 - job: AzureSdkForJs
   dependsOn: Get_Repos
   variables:
@@ -46,9 +42,7 @@ jobs:
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-js')
   displayName: AzureSdkForJs
   steps:
-  - script: echo $SDK_REPO_NAME
-    # env:
-    #   SDK_REPO_NAME: azure-sdk-for-js
+  - template: templates/RunSDKAuto.yml
 - job: AzureSdkForPython
   dependsOn: Get_Repos
   variables:
@@ -57,6 +51,4 @@ jobs:
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-python')
   displayName: AzureSdkForPython
   steps:
-  - script: echo $SDK_REPO_NAME
-    # env:
-    #   SDK_REPO_NAME: azure-sdk-for-python
+  - template: templates/RunSDKAuto.yml
