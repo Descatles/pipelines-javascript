@@ -20,6 +20,7 @@ jobs:
   dependsOn: Get_Repos
   variables:
     EnabledJobs: $[ dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'] ]
+    SDK_REPO_NAME: azure-sdk-for-net
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-net')
   displayName: AzureSdkForNet
   steps:
@@ -30,6 +31,7 @@ jobs:
   dependsOn: Get_Repos
   variables:
     EnabledJobs: $[ dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'] ]
+    SDK_REPO_NAME: azure-sdk-for-java
   condition: contains(dependencies.Get_Repos.outputs['GetRepo.EnabledJobs'], 'azure-sdk-for-java')
   displayName: AzureSdkForJava
   steps:
