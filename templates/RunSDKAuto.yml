@@ -1,4 +1,5 @@
 steps:
   - script: echo $SDK_REPO_NAME
-  env:
+  env: {
     BLOB_STORAGE_NAME: AKALI
+  }
